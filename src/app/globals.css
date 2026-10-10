@@ -24,28 +24,31 @@
 }
 
 /* ---- Base --------------------------------------------------------------- */
-html {
-  color: var(--color-enamel);
-  -webkit-text-size-adjust: 100%;
-}
+/* In @layer base so Tailwind utilities (e.g. font-sans on a heading) win. */
+@layer base {
+  html {
+    color: var(--color-enamel);
+    -webkit-text-size-adjust: 100%;
+  }
 
-body {
-  font-family: var(--font-sans), system-ui, sans-serif;
-  line-height: 1.6;
-  overflow-x: clip;
-}
+  body {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: clip;
+  }
 
-h1,
-h2,
-h3 {
-  font-family: var(--font-display), system-ui, sans-serif;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
-  text-wrap: balance;
-}
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display), system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
 
-p {
-  text-wrap: pretty;
+  p {
+    text-wrap: pretty;
+  }
 }
 
 /* Sticky header offset for anchor jumps (Lenis reads this too). */

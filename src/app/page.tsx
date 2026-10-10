@@ -1,6 +1,8 @@
 import { MachineHero } from "@/components/machine/MachineHero";
 import { Services } from "@/components/sections/Services";
 import { Work } from "@/components/sections/Work";
+import { Experience } from "@/components/sections/Experience";
+import { Credentials } from "@/components/sections/Credentials";
 
 export default function Home() {
   return (
@@ -8,7 +10,8 @@ export default function Home() {
       <MachineHero />
       <Services />
       <Work />
-      <div id="experience" className="h-[60vh]" />
+      <Experience />
+      <Credentials />
       <div id="contact" className="h-[60vh]" />
     </main>
   );

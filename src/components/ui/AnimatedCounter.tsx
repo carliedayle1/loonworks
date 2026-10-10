@@ -34,7 +34,7 @@ export function AnimatedCounter({
     ({ root }) => {
       const proxy = { n: 0 };
       const render = () => {
-        root.textContent = `${prefix}${Math.round(proxy.n).toLocaleString()}${suffix}`;
+        root.textContent = `${prefix}${Math.round(proxy.n).toLocaleString("en-US")}${suffix}`;
       };
       render();
       gsap.to(proxy, {
@@ -44,6 +44,11 @@ export function AnimatedCounter({
         onUpdate: render,
         scrollTrigger: { trigger: root, start: "top 88%", once: true },
       });
+      // GSAP does not revert textContent; put the final value back on revert.
+      return () => {
+        proxy.n = value;
+        render();
+      };
     },
     { scope: ref },
   );
@@ -51,7 +56,7 @@ export function AnimatedCounter({
   return (
     <span ref={ref} className={cn("tabular-nums", className)}>
       {prefix}
-      {value.toLocaleString()}
+      {value.toLocaleString("en-US")}
       {suffix}
     </span>
   );

@@ -73,25 +73,65 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     };
   }, [reducedMotion]);
 
-  // On route change, re-measure triggers for the new document, then jump to the
-  // #hash target or the top. The browser applies a hash before hydration, i.e.
-  // before pins add their spacer height, so it has to be re-applied here.
+  // Remember where the visitor was, so a reload or Back can put them there
+  // again (the browser's own restore runs before the pin spacer exists).
+  useEffect(() => {
+    const save = () => {
+      try {
+        sessionStorage.setItem(`scroll:${window.location.pathname}`, String(Math.round(window.scrollY)));
+      } catch {
+        // Storage blocked (private mode): fall back to the browser's restore.
+      }
+    };
+    window.addEventListener("pagehide", save);
+    return () => window.removeEventListener("pagehide", save);
+  }, []);
+
+  // On first load and route change: re-measure triggers, then jump to the
+  // saved position (reload / Back), the #hash target, or the top. The browser
+  // applies hashes and restores scroll before hydration, i.e. before pins add
+  // their spacer height, so both have to be re-applied here.
+  const firstRun = useRef(true);
   useEffect(() => {
     ScrollTrigger.refresh();
     const instance = lenisRef.current;
-    const target = window.location.hash ? document.getElementById(window.location.hash.slice(1)) : null;
-    if (target) {
+    const jump = (target: number | HTMLElement) => {
       if (instance) {
         instance.scrollTo(target, { immediate: true, force: true });
+      } else if (typeof target === "number") {
+        window.scrollTo(0, target);
       } else {
         target.scrollIntoView();
       }
-    } else if (instance) {
-      instance.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo(0, 0);
+    };
+
+    const isFirstRun = firstRun.current;
+    firstRun.current = false;
+    const saved = isFirstRun ? savedScroll() : null;
+    const hashTarget = window.location.hash
+      ? document.getElementById(decodeURIComponent(window.location.hash.slice(1)))
+      : null;
+
+    if (saved !== null) {
+      jump(saved);
+    } else if (hashTarget) {
+      jump(hashTarget);
+    } else if (!isFirstRun) {
+      jump(0);
     }
   }, [pathname]);
 
   return <>{children}</>;
+}
+
+/** Saved scrollY for this page, only when it was reloaded or reached via Back/Forward. */
+function savedScroll(): number | null {
+  const nav = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+  if (nav?.type !== "reload" && nav?.type !== "back_forward") return null;
+  try {
+    const value = sessionStorage.getItem(`scroll:${window.location.pathname}`);
+    return value === null ? null : Number(value);
+  } catch {
+    return null;
+  }
 }

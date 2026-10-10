@@ -129,9 +129,11 @@ export function Contraption({ className }: { className?: string }) {
       </g>
 
       {/* The ball (an email, really). The load-time drop moves the <g>; the
-          scroll run moves the circle, so the two transforms never overwrite. */}
+          scroll run moves the circle. The circle sits at the origin and is
+          placed by its transform, so motionPath can use path coordinates as
+          x/y directly (no `align`, which would measure the moving <g>). */}
       <g id="ball-drop">
-        <circle id="ball" cx="66" cy="92" r="16" fill="var(--color-tomato)" stroke="var(--color-enamel)" strokeWidth="4" />
+        <circle id="ball" cx="0" cy="0" r="16" transform="translate(66 92)" fill="var(--color-tomato)" stroke="var(--color-enamel)" strokeWidth="4" />
       </g>
     </svg>
   );

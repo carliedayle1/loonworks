@@ -3,6 +3,7 @@ import { Services } from "@/components/sections/Services";
 import { Work } from "@/components/sections/Work";
 import { Experience } from "@/components/sections/Experience";
 import { Credentials } from "@/components/sections/Credentials";
+import { Contact } from "@/components/sections/Contact";
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
       <Work />
       <Experience />
       <Credentials />
-      <div id="contact" className="h-[60vh]" />
+      <Contact />
     </main>
   );
 }

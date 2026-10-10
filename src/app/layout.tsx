@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hanken_Grotesk, Unbounded } from "next/font/google";
 
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { Header } from "@/components/sections/Header";
 
 import "./globals.css";
 
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         >
           Skip to content
         </a>
+        <Header />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>

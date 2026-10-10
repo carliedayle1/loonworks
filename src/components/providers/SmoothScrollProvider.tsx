@@ -42,6 +42,11 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
 
     instance.on("scroll", ScrollTrigger.update);
 
+    // Pins add spacer height that Lenis's ResizeObserver can miss; re-measure
+    // whenever ScrollTrigger refreshes (after pins are built, fonts, routes).
+    const remeasure = () => instance.resize();
+    ScrollTrigger.addEventListener("refresh", remeasure);
+
     // Dev-only handle for debugging/tooling (e.g. driving scroll in previews).
     if (process.env.NODE_ENV !== "production") {
       (window as unknown as { __lenis?: Lenis }).__lenis = instance;
@@ -61,6 +66,7 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
 
     return () => {
       cancelled = true;
+      ScrollTrigger.removeEventListener("refresh", remeasure);
       gsap.ticker.remove(tick);
       instance.destroy();
       lenisRef.current = null;

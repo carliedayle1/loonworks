@@ -138,3 +138,13 @@ p {
     scroll-behavior: auto !important;
   }
 }
+
+/* Machine hero on phones: while the animation runs, the four captions share
+   one slot and swap, and the closing line takes it last. Without JS or with reduced motion they stay a list. */
+@media (max-width: 767px) {
+  .machine-hero.is-running .stations > li,
+  .machine-hero.is-running .caption-slot > * {
+    grid-area: 1 / 1;
+    margin-top: 0;
+  }
+}

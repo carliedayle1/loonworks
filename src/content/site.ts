@@ -46,6 +46,7 @@ export type Stat = { value: number; suffix: string; max: number; label: string }
 
 export const profile = {
   name: "Erick Dayle Loon",
+  brand: "Loonworks",
   role: "Web developer and AI automation engineer",
   location: "Lapu-Lapu City, Cebu, Philippines",
   email: "daylecarlie@gmail.com",

@@ -20,6 +20,7 @@ This file holds two documents. On approval, Task 1 saves Part A to `docs/superpo
 # Part A — Design spec
 
 ## A1. Positioning and copy rules
+- Brand: Loonworks (site title, header wordmark, case-page titles); the person's name stays in the footer and meta description.
 - Name: Erick Dayle Loon. Role line: "Web developer and AI automation engineer". Location: Lapu-Lapu City, Cebu, Philippines.
 - Email `daylecarlie@gmail.com` (from CV). LinkedIn `https://www.linkedin.com/in/erick-dayle-loon`.
 - Never: the word "founder", the phone number, any `.env` value, family/author photos from unplug `public/images/*.jpeg` or `author_pic.jpg`, Bookture `studio-*.png` (shows a person).

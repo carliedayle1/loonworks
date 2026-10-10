@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Hanken_Grotesk, Unbounded } from "next/font/google";
 
+import { profile } from "@/content/site";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { Header } from "@/components/sections/Header";
 
@@ -18,7 +19,7 @@ const hanken = Hanken_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Erick Dayle Loon | Web developer and AI automation engineer",
+  title: `${profile.brand} | Web development and AI automation by ${profile.name}`,
   description:
     "Web development and AI automation from Lapu-Lapu City, Cebu. 7+ years building and rolling out software, most recently for life-sciences teams in 35+ countries.",
 };

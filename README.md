@@ -1,4 +1,6 @@
-# Erick Dayle Loon — portfolio
+# Loonworks
+
+Portfolio of Erick Dayle Loon: web development and AI automation.
 
 One-page portfolio with case studies, built as a static Next.js export. Theme: a tin-toy machine whose scroll-driven run explains AI automation.
 

@@ -18,7 +18,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/work/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
-  return project ? { title: `${project.title} | ${profile.name}`, description: project.pitch } : {};
+  return project ? { title: `${project.title} | ${profile.brand}`, description: project.pitch } : {};
 }
 
 function Block({ title, children }: { title: string; children: ReactNode }) {

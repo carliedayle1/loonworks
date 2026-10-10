@@ -3,10 +3,11 @@ import Link from "next/link";
 import { profile } from "@/content/site";
 import { GearIcon } from "@/components/ui/GearIcon";
 
+// Experience drops off below 480px so the wordmark and nav fit one line.
 const LINKS = [
   { label: "Work", href: "/#work" },
   { label: "Services", href: "/#services" },
-  { label: "Experience", href: "/#experience" },
+  { label: "Experience", href: "/#experience", wide: true },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -16,13 +17,12 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between gap-4 px-4 md:px-8">
         <Link href="/" className="group flex items-center gap-2 font-display text-[0.9375rem] font-bold tracking-tight">
           <GearIcon className="size-6 text-mustard transition-transform duration-500 ease-snap group-hover:rotate-45" />
-          <span className="sm:hidden" aria-hidden="true">EDL</span>
-          <span className="sr-only sm:not-sr-only">{profile.name}</span>
+          <span>{profile.brand}</span>
         </Link>
         <nav aria-label="Main">
           <ul className="flex gap-3.5 text-[0.8125rem] font-semibold sm:gap-7 sm:text-[0.9375rem]">
-            {LINKS.map(({ label, href }) => (
-              <li key={href}>
+            {LINKS.map(({ label, href, wide }) => (
+              <li key={href} className={wide ? "max-[479px]:hidden" : undefined}>
                 <a href={href} className="underline-offset-[6px] hover:underline">
                   {label}
                 </a>

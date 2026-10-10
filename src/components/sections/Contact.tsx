@@ -1,6 +1,5 @@
 import { contact, profile } from "@/content/site";
 import { CopyEmail } from "@/components/ui/CopyEmail";
-import { GearIcon } from "@/components/ui/GearIcon";
 
 export function Contact() {
   return (
@@ -25,12 +24,9 @@ export function Contact() {
           </a>
         </div>
 
-        <footer className="mt-24 flex items-end justify-between gap-6 border-t border-paper/15 pt-8 text-sm text-paper/75 md:mt-32">
-          <div>
-            <p>© 2026 {profile.name}</p>
-            <p>{profile.location}</p>
-          </div>
-          <GearIcon className="size-7 text-mustard" />
+        <footer className="mt-24 border-t border-paper/15 pt-8 text-sm text-paper/75 md:mt-32">
+          <p>© 2026 {profile.name}</p>
+          <p>{profile.location}</p>
         </footer>
       </div>
     </section>

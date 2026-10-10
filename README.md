@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Erick Dayle Loon — portfolio
 
-## Getting Started
+One-page portfolio with case studies, built as a static Next.js export. Theme: a tin-toy machine whose scroll-driven run explains AI automation.
 
-First, run the development server:
+## Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev            # http://localhost:3000
+npm run verify         # lint + static build + content/output checks
+npm run check:content  # content checks only (no build)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run build` writes the static site to `out/`. Upload that folder to any static host. `public/.htaccess` points Apache/LiteSpeed hosts at `404.html`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Editing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- All copy, projects, roles and stats live in `src/content/site.ts`. `scripts/check-content.mjs` guards it (slugs, image paths, banned words such as the phone number).
+- Project images go in `public/work/<slug>/`. To replace an illustrated plate with a screenshot, add the file and set `image` (and remove `art`) for that project.
+- Motion lives in `src/components/machine/`. All animation runs through `useAnimation`, so reduced-motion visitors get the finished diagram.
 
-## Learn More
+## Docs
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Design spec: `docs/superpowers/specs/2026-10-10-portfolio-contraption-design.md`
+- Implementation plan: `docs/superpowers/plans/2026-10-10-portfolio-contraption.md`

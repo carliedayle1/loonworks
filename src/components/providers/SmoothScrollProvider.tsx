@@ -73,18 +73,24 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     };
   }, [reducedMotion]);
 
-  // On route change, jump to top (unless a #hash is the target) and re-measure
-  // triggers for the new document.
+  // On route change, re-measure triggers for the new document, then jump to the
+  // #hash target or the top. The browser applies a hash before hydration, i.e.
+  // before pins add their spacer height, so it has to be re-applied here.
   useEffect(() => {
-    if (!window.location.hash) {
-      const instance = lenisRef.current;
-      if (instance) {
-        instance.scrollTo(0, { immediate: true });
-      } else {
-        window.scrollTo(0, 0);
-      }
-    }
     ScrollTrigger.refresh();
+    const instance = lenisRef.current;
+    const target = window.location.hash ? document.getElementById(window.location.hash.slice(1)) : null;
+    if (target) {
+      if (instance) {
+        instance.scrollTo(target, { immediate: true, force: true });
+      } else {
+        target.scrollIntoView();
+      }
+    } else if (instance) {
+      instance.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, [pathname]);
 
   return <>{children}</>;

@@ -105,7 +105,7 @@ export function MachineHero() {
                 Email me
               </a>
             </div>
-            <p data-hint className="mt-5 flex items-center gap-2 text-sm font-semibold text-enamel/70">
+            <p data-hint className="mt-5 flex items-center gap-2 motion-reduce:hidden text-sm font-semibold text-enamel/70">
               <svg aria-hidden="true" viewBox="0 0 16 16" className="size-4">
                 <circle cx="8" cy="8" r="6.5" fill="var(--color-tomato)" />
               </svg>

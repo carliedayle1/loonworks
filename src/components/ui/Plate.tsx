@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 export function KindTag({ kind }: { kind: Project["kind"] }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-[6px] bg-tin px-2.5 py-1 text-[0.8125rem] font-semibold">
+    <span className="inline-flex items-center gap-2 rounded-[6px] bg-enamel/[0.07] px-2.5 py-1 text-[0.8125rem] font-semibold">
       <span aria-hidden="true" className={cn("size-2.5 rounded-full", kind === "ai" ? "bg-teal" : "bg-enamel")} />
       {kind === "ai" ? "AI automation" : "Web"}
     </span>

@@ -60,7 +60,7 @@ export const hero = {
 };
 
 export const stations: string[] = [
-  "A customer emails you at 2 a.m.",
+  "A customer emails you at 2\u00a0a.m.",
   "AI reads it and sorts it: a quote request.",
   "It drafts the reply and logs the lead in your CRM.",
   "You approve with one click. Done before coffee.",
